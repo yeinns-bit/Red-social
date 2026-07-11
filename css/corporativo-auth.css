@@ -1,0 +1,326 @@
+/* ==========================================================================
+   WALEKERNET — Acceso (login / registro)
+   --------------------------------------------------------------------------
+   Se carga DE ÚLTIMA en index_header.php.
+   IMPORTANTE: no toca #login / #register / :target / .animate,
+   que son los que hacen funcionar el cambio entre pestañas.
+   Solo cambia colores, tipografía y espaciado.
+   ========================================================================== */
+
+:root {
+  --c-white:       #FFFFFF;
+  --c-surface:     #F5F7FA;
+  --c-line:        #E5E7EB;
+  --c-line-strong: #D1D5DB;
+  --c-blue:        #2563EB;
+  --c-blue-dark:   #1E3A8A;
+  --c-ink:         #111827;
+  --c-muted:       #6B7280;
+  --font-ui:       'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display:  'Manrope', 'Inter', sans-serif;
+  --ease:          cubic-bezier(.4, 0, .2, 1);
+}
+
+/* --- Fondo --- */
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-ui) !important;
+  background: var(--c-surface) !important;
+  background-image:
+    radial-gradient(1000px 520px at 12% -12%, rgba(37, 99, 235, .10), transparent 62%),
+    radial-gradient(760px 420px at 100% 0%, rgba(30, 58, 138, .09), transparent 60%) !important;
+  color: var(--c-ink) !important;
+  min-height: 100vh;
+}
+
+/* --- Barra superior de marca --- */
+.codrops-top {
+  background: var(--c-white) !important;
+  border-bottom: 1px solid var(--c-line);
+  box-shadow: 0 1px 2px rgba(17, 24, 39, .04);
+  line-height: 1 !important;
+  padding: 0 !important;
+  font-size: inherit !important;
+}
+
+.codrops-top .cln {
+  display: flex;
+  align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 16px 24px;
+}
+
+.codrops-top .title,
+.title {
+  font-family: var(--font-display) !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  letter-spacing: -.02em;
+  color: var(--c-ink) !important;
+  text-transform: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  float: none !important;
+  text-shadow: none !important;
+  border: 0 !important;
+  font-family: var(--font-display) !important;
+}
+
+/* --- Contenedor --- */
+#container_demo {
+  padding: 0 !important;
+  margin: 0 auto !important;
+  max-width: 460px;
+  width: 100%;
+}
+
+.container > section,
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 140px);
+  padding: 40px 20px;
+}
+
+/* --- Contenedor de posicionamiento ---
+   #wrapper NO es la tarjeta: solo es el marco donde #login y #register
+   se apilan en absoluto. Debe quedar transparente. */
+#wrapper {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  min-height: 600px !important;
+  position: relative !important;   /* imprescindible: no lo cambiamos */
+}
+
+#wrapper::before,
+#wrapper::after { display: none !important; }
+
+/* --- Las tarjetas reales ---
+   OJO: aquí NO se toca position / top / z-index / opacity / animation,
+   que es lo que hace funcionar el cambio Ingresar <-> Regístrate. */
+#login,
+#register {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  padding: 34px 32px !important;
+  margin: 0 !important;
+  background: var(--c-white) !important;
+  border: 1px solid var(--c-line) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 12px 32px rgba(17, 24, 39, .08),
+    0 2px 6px rgba(17, 24, 39, .04) !important;
+}
+
+/* --- Títulos --- */
+#wrapper h1,
+#wrapper h3,
+#wrapper h4 {
+  font-family: var(--font-display) !important;
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  letter-spacing: -.02em !important;
+  color: var(--c-ink) !important;
+  text-transform: none !important;
+  text-shadow: none !important;
+  text-align: left !important;
+  margin: 0 0 4px !important;
+  padding: 0 !important;
+  line-height: 1.25 !important;
+  background: none !important;
+  border: 0 !important;
+}
+
+#wrapper h1::after,
+#wrapper h1:after { display: none !important; content: none !important; }
+
+/* Subtítulo generado por CSS: explica de qué va cada formulario */
+#login form h3::after {
+  content: "Entra con tu usuario y contraseña.";
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--c-muted);
+  letter-spacing: 0;
+}
+
+#register form h4::after {
+  content: "Crea tu cuenta en menos de un minuto.";
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--c-muted);
+  letter-spacing: 0;
+}
+
+/* La línea decorativa bajo el título sobra */
+#wrapper hr { display: none !important; }
+
+/* --- Campos --- */
+#wrapper p {
+  margin: 0 0 16px !important;
+  padding: 0 !important;
+  background: none !important;
+}
+
+#wrapper p:first-child { margin-top: 20px !important; }
+
+#wrapper label {
+  display: block !important;
+  position: static !important;
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+  font-family: var(--font-ui) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--c-ink) !important;
+  text-shadow: none !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  cursor: default;
+}
+
+/* Los iconos decorativos de los labels (data-icon) los quitamos */
+#wrapper label::before,
+#wrapper label::after { display: none !important; content: none !important; }
+
+#wrapper input:not([type="checkbox"]),
+#wrapper select {
+  display: block !important;
+  width: 100% !important;
+  height: 44px !important;
+  padding: 0 14px !important;
+  border: 1px solid var(--c-line-strong) !important;
+  border-radius: 8px !important;
+  background: var(--c-white) !important;
+  font-family: var(--font-ui) !important;
+  font-size: 15px !important;
+  color: var(--c-ink) !important;
+  box-shadow: none !important;
+  transition: border-color .16s var(--ease), box-shadow .16s var(--ease) !important;
+}
+
+#wrapper input::placeholder { color: #9CA3AF; }
+
+#wrapper input:not([type="checkbox"]):focus,
+#wrapper select:focus {
+  outline: none !important;
+  border-color: var(--c-blue) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .15) !important;
+  background: var(--c-white) !important;
+}
+
+/* --- Botón principal --- */
+#wrapper p.button input,
+#wrapper p.login.button input,
+#wrapper p.signin.button input {
+  width: 100% !important;
+  height: 46px !important;
+  margin-top: 8px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: var(--c-blue) !important;
+  color: var(--c-white) !important;
+  font-family: var(--font-ui) !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  text-shadow: none !important;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(17, 24, 39, .08) !important;
+  transition: background-color .16s var(--ease), transform .12s var(--ease) !important;
+}
+
+#wrapper p.button input:hover,
+#wrapper p.button input:focus {
+  background: #1D4FD8 !important;
+  transform: translateY(-1px);
+}
+
+#wrapper p.button input:active { transform: translateY(0); }
+
+#wrapper p.button input:focus-visible {
+  outline: 2px solid var(--c-blue-dark) !important;
+  outline-offset: 2px;
+}
+
+p.signin.button { margin-top: 0 !important; }
+
+/* --- Enlace de cambio login/registro --- */
+p.change_link,
+#wrapper p.change_link {
+  margin: 22px 0 0 !important;
+  padding: 18px 0 0 !important;
+  border-top: 1px solid var(--c-line) !important;
+  background: none !important;
+  color: var(--c-muted) !important;
+  font-family: var(--font-ui) !important;
+  font-size: 14px !important;
+  text-align: center !important;
+  position: static !important;
+  width: auto !important;     /* style2.css lo fijaba en 440px y se desbordaba */
+  height: auto !important;
+}
+
+p.change_link::before,
+p.change_link::after { display: none !important; content: none !important; }
+
+#wrapper p.change_link a {
+  display: inline-block !important;
+  margin-left: 6px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  color: var(--c-blue) !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  text-transform: none !important;
+  transition: color .15s var(--ease) !important;
+}
+
+#wrapper p.change_link a:hover,
+#wrapper p.change_link a:focus {
+  background: none !important;
+  color: var(--c-blue-dark) !important;
+  text-decoration: underline !important;
+}
+
+#wrapper p.change_link a:active { background: none !important; }
+
+/* --- Accesibilidad --- */
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--c-blue);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: .001ms !important; animation-duration: .001ms !important; }
+}
+
+/* --- Responsive --- */
+@media (max-width: 520px) {
+  #wrapper { padding: 26px 20px !important; border-radius: 12px !important; }
+  section { padding: 24px 14px; }
+  .codrops-top .cln { padding: 14px 16px; }
+}
