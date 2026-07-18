@@ -9,13 +9,13 @@
 
 :root {
   --c-white:       #FFFFFF;
-  --c-surface:     #F5F7FA;
-  --c-line:        #E5E7EB;
-  --c-line-strong: #D1D5DB;
-  --c-blue:        #2563EB;
-  --c-blue-dark:   #1E3A8A;
-  --c-ink:         #111827;
-  --c-muted:       #6B7280;
+  --c-surface:     #F4F9F7;
+  --c-line:        #E3EAE7;
+  --c-line-strong: #CBD6D1;
+  --c-blue:        #0E9F73;   /* esmeralda Bulbasaur */
+  --c-blue-dark:   #3B2A6D;   /* violeta Starmie */
+  --c-ink:         #14201C;
+  --c-muted:       #64766F;
   --font-ui:       'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display:  'Manrope', 'Inter', sans-serif;
   --ease:          cubic-bezier(.4, 0, .2, 1);
@@ -30,8 +30,8 @@ body {
   font-family: var(--font-ui) !important;
   background: var(--c-surface) !important;
   background-image:
-    radial-gradient(1000px 520px at 12% -12%, rgba(37, 99, 235, .10), transparent 62%),
-    radial-gradient(760px 420px at 100% 0%, rgba(30, 58, 138, .09), transparent 60%) !important;
+    radial-gradient(1000px 520px at 12% -12%, rgba(14, 159, 115, .12), transparent 62%),
+    radial-gradient(760px 420px at 100% 0%, rgba(59, 42, 109, .10), transparent 60%) !important;
   color: var(--c-ink) !important;
   min-height: 100vh;
 }
@@ -69,6 +69,41 @@ body {
   border: 0 !important;
   font-family: var(--font-display) !important;
 }
+
+/* --- Barra superior: marca + botón de tema --- */
+.codrops-top .clr,
+.codrops-top .cln {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 14px 24px;
+}
+
+.title .brand-ball {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-right: 8px;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,.25));
+}
+
+.auth-theme {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--r-full, 999px);
+  background: var(--c-white);
+  color: var(--c-ink);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color .16s var(--ease), background .16s var(--ease);
+}
+.auth-theme:hover, .auth-theme:focus { border-color: var(--c-blue); outline: none; }
 
 /* --- Contenedor --- */
 #container_demo {
@@ -221,7 +256,7 @@ section {
 #wrapper select:focus {
   outline: none !important;
   border-color: var(--c-blue) !important;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, .15) !important;
+  box-shadow: 0 0 0 3px rgba(14, 159, 115, .16) !important;
   background: var(--c-white) !important;
 }
 
@@ -250,7 +285,7 @@ section {
 
 #wrapper p.button input:hover,
 #wrapper p.button input:focus {
-  background: #1D4FD8 !important;
+  background: #0B7E5B !important;
   transform: translateY(-1px);
 }
 
@@ -323,4 +358,43 @@ select:focus-visible {
   #wrapper { padding: 26px 20px !important; border-radius: 12px !important; }
   section { padding: 24px 14px; }
   .codrops-top .cln { padding: 14px 16px; }
+}
+
+
+/* ==========================================================================
+   MODO OSCURO (pantalla de acceso)
+   ========================================================================== */
+[data-theme="dark"] {
+  --c-white:       #1B2233;
+  --c-surface:     #0E1320;
+  --c-line:        rgba(255, 255, 255, .09);
+  --c-line-strong: rgba(255, 255, 255, .18);
+  --c-ink:         #E8ECF3;
+  --c-muted:       #97A2B4;
+}
+
+[data-theme="dark"] body {
+  background:
+    radial-gradient(1000px 520px at 12% -12%, rgba(14, 159, 115, .16), transparent 62%),
+    radial-gradient(760px 420px at 100% 0%, rgba(59, 42, 109, .30), transparent 60%),
+    #0E1320 !important;
+}
+
+[data-theme="dark"] .codrops-top {
+  background: #151B29 !important;
+  border-bottom-color: rgba(255,255,255,.08);
+}
+
+[data-theme="dark"] #login,
+[data-theme="dark"] #register {
+  background: #1B2233 !important;
+  border-color: rgba(255,255,255,.10) !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,.45) !important;
+}
+
+[data-theme="dark"] #wrapper input:not([type="checkbox"]),
+[data-theme="dark"] #wrapper select {
+  background: #10141F !important;
+  border-color: rgba(255,255,255,.16) !important;
+  color: #E8ECF3 !important;
 }

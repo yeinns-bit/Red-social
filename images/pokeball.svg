@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="shine" cx="38%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".55"/>
+      <stop offset="35%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="topRed" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F24B39"/>
+      <stop offset="100%" stop-color="#E3350D"/>
+    </linearGradient>
+  </defs>
+
+  <!-- fondo -->
+  <circle cx="100" cy="100" r="96" fill="#0F1420"/>
+
+  <!-- cuerpo -->
+  <circle cx="100" cy="100" r="88" fill="#ffffff" stroke="#12161f" stroke-width="8"/>
+
+  <!-- mitad roja -->
+  <path d="M12 100a88 88 0 0 1 176 0z" fill="url(#topRed)"/>
+
+  <!-- banda central -->
+  <rect x="12" y="92" width="176" height="16" fill="#12161f"/>
+
+  <!-- botón central -->
+  <circle cx="100" cy="100" r="30" fill="#12161f"/>
+  <circle cx="100" cy="100" r="22" fill="#ffffff"/>
+  <circle cx="100" cy="100" r="11" fill="#ffffff" stroke="#12161f" stroke-width="5"/>
+
+  <!-- brillo -->
+  <circle cx="100" cy="100" r="88" fill="url(#shine)"/>
+</svg>
